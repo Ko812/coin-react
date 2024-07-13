@@ -1,0 +1,32 @@
+name: coin-react-workflow
+
+# trigger
+on: push
+
+jobs:
+  # name of your job
+  Build-React:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: Checkout-step
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.ref}}
+          path: ${{github.workspace}}/${{github.ref_name}}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUBUSERNAME }}
+          password: ${{ secrets.DOCKERHUBACCESSTOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        id: build-and-push
+        with:
+          file: ${{github.workspace}}/${{github.ref_name}}/Dockerfile
+          push: true
+          tags: ${{secrets.DOCKERHUBUSERNAME}}/coin-react:${{github.sha}}
