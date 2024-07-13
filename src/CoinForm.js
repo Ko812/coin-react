@@ -62,7 +62,6 @@ export default function CoinForm() {
                     for (var v of toUnclick) { 
                         document.getElementById(v).click();
                     }
-                    console.log(selectedDenominators);
 				}
 		});
         
