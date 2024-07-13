@@ -1,4 +1,4 @@
-FROM npm:10.8.0 AS builder
+FROM alpine:3.19
 
 RUN npm ci
 ENTRYPOINT ["npm","start"]
