@@ -74,6 +74,9 @@ export default function CoinForm() {
             <label className="col-3 align-items-center d-flex">Target amount: </label>
             <input type="number" min="0.0" max="10000.0" className="form-control" step="0.01" name="targetAmount" id="target-amount"/>
         </div>
+        
+        <p><b>Coin Denominations:</b></p>
+            
         <div className="row">
             <div className="form-group col">
                     <input type="checkbox" value="0.01" name="coinDenominators" onClick={ toggle} id="0.01" /> <label className="ms-2">0.01</label>
